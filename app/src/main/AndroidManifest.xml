@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MuviApp">
         <activity android:name=".ui.detail.DetailActivity" />
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:theme="@style/Theme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

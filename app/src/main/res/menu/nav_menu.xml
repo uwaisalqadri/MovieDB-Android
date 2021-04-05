@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/item_home"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/popularFragment"
+        android:icon="@drawable/item_popular"
+        android:title="@string/popular" />
+
+    <item
+        android:id="@+id/favoriteFragment"
+        android:icon="@drawable/item_favorite"
+        android:title="@string/favorite" />
+
+    <item
+        android:id="@+id/nothing"
+        android:icon="@drawable/ic_unknown"
+        android:title="@string/popular" />
+
 </menu>
