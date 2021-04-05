@@ -42,13 +42,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         with(viewModel) {
             getDiscoverMovies(1)
+            getPopularMovies(2)
+            getUpComingMovies(1, 2022)
             discoverMovieData.observe(viewLifecycleOwner) { movies ->
                 movies.slice(0 until 3).map {
                     sliderAdapter.add(SliderMovieItem(it))
                 }
+            }
+            popularMovieData.observe(viewLifecycleOwner) { movies ->
                 movies.map {
                     popularAdapter.add(MovieItem(it))
                 }
+            }
+            upComingMovieData.observe(viewLifecycleOwner) { movies ->
                 movies.map {
                     upComingAdapter.add(MovieItem(it))
                 }

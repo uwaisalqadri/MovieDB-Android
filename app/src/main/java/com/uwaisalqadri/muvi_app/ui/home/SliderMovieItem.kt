@@ -14,9 +14,10 @@ import com.xwray.groupie.viewbinding.BindableItem
 class SliderMovieItem(
     private val movie: Movie
 ) : BindableItem<SliderHomeItemBinding>() {
+
     override fun bind(viewBinding: SliderHomeItemBinding, position: Int) {
         viewBinding.apply {
-            imgSliderHomeItem.loadImage(Constants.URL_IMAGE + movie.backdrop_path)
+            movie.backdrop_path?.let { imgSliderHomeItem.loadImage(Constants.URL_IMAGE + it) }
         }
     }
 

@@ -17,7 +17,7 @@ class MovieItem(
 
     override fun bind(viewBinding: HomeListItemBinding, position: Int) {
         viewBinding.apply {
-            imgHomeItem.loadImage(Constants.URL_IMAGE + movie.poster_path)
+            movie.poster_path?.let { imgHomeItem.loadImage(Constants.URL_IMAGE + it) }
         }
     }
 

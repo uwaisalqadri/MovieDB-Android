@@ -18,6 +18,8 @@ class HomeViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val discoverMovieData = MutableLiveData<List<Movie>>()
+    val popularMovieData = MutableLiveData<List<Movie>>()
+    val upComingMovieData = MutableLiveData<List<Movie>>()
     val showProgressbar = MutableLiveData<Boolean>()
     val messageData = MutableLiveData<String>()
 
@@ -35,6 +37,50 @@ class HomeViewModel @Inject constructor(
                 .subscribe({ result ->
                     if (result.isNotEmpty()) {
                         discoverMovieData.value = result
+                        showProgressbar.value = false
+                    } else {
+                        messageData.value = "Data is Empty"
+                    }
+                }, this::onError)
+        )
+    }
+
+    fun getPopularMovies(page: Int) {
+        showProgressbar.value = true
+        compositeDisposable.add(
+            movieUseCase.getDiscoverMovies(
+                Constants.API_KEY,
+                Constants.LANG,
+                Constants.SORT_BY,
+                false,
+                page,
+                2021
+            ).compose(RxUtils.applySingleAsync())
+                .subscribe({ result ->
+                    if (result.isNotEmpty()) {
+                        popularMovieData.value = result
+                        showProgressbar.value = false
+                    } else {
+                        messageData.value = "Data is Empty"
+                    }
+                }, this::onError)
+        )
+    }
+
+    fun getUpComingMovies(page: Int, year: Int) {
+        showProgressbar.value = true
+        compositeDisposable.add(
+            movieUseCase.getDiscoverMovies(
+                Constants.API_KEY,
+                Constants.LANG,
+                Constants.SORT_BY,
+                false,
+                page,
+                year
+            ).compose(RxUtils.applySingleAsync())
+                .subscribe({ result ->
+                    if (result.isNotEmpty()) {
+                        upComingMovieData.value = result
                         showProgressbar.value = false
                     } else {
                         messageData.value = "Data is Empty"
