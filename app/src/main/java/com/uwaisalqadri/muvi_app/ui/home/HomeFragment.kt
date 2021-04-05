@@ -5,6 +5,9 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.uwaisalqadri.muvi_app.R
 import com.uwaisalqadri.muvi_app.databinding.FragmentHomeBinding
@@ -39,6 +42,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         with(viewModel) {
             getDiscoverMovies(1)
+            discoverMovieData.observe(viewLifecycleOwner) { movies ->
+                movies.slice(0 until 3).map {
+                    sliderAdapter.add(SliderMovieItem(it))
+                }
+            }
             messageData.observe(viewLifecycleOwner) {
                 context?.showToast(it)
             }
@@ -46,6 +54,56 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             showProgressbar.observe(viewLifecycleOwner) {
                 Timber.d("isLoading $it")
             }
+        }
+
+        with(binding.rvSlider) {
+            val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = linearLayoutManager
+            adapter = sliderAdapter
+            setHasFixedSize(true)
+
+            val snapHelper = PagerSnapHelper()
+            snapHelper.attachToRecyclerView(this)
+
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        val item = snapHelper.findSnapView(linearLayoutManager)
+                        item?.let { linearLayoutManager.getPosition(it) }
+                    }
+                }
+
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    when (linearLayoutManager.findFirstVisibleItemPosition()) {
+                        0 -> {
+                            sliderIndicator.apply {
+                                item1.setImageResource(R.drawable.current_slider_item)
+                                item2.setImageResource(R.drawable.uncurrent_slider_item)
+                                item3.setImageResource(R.drawable.uncurrent_slider_item)
+                            }
+                        }
+                        1 -> {
+                            sliderIndicator.apply {
+                                item1.setImageResource(R.drawable.uncurrent_slider_item)
+                                item2.setImageResource(R.drawable.current_slider_item)
+                                item3.setImageResource(R.drawable.uncurrent_slider_item)
+                            }
+                        }
+                        2 -> {
+                            sliderIndicator.apply {
+                                item1.setImageResource(R.drawable.uncurrent_slider_item)
+                                item2.setImageResource(R.drawable.uncurrent_slider_item)
+                                item3.setImageResource(R.drawable.current_slider_item)
+                            }
+                        }
+                    }
+                }
+            })
+
         }
 
         toolbarBinding.apply {

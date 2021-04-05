@@ -7,21 +7,21 @@
 
     <ImageView
         android:id="@+id/item1"
-        android:layout_width="33dp"
-        android:layout_height="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/current_slider_item"/>
 
     <ImageView
         android:id="@+id/item2"
-        android:layout_width="11dp"
-        android:layout_height="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:src="@drawable/uncurrent_slider_item"/>
 
     <ImageView
         android:id="@+id/item3"
-        android:layout_width="11dp"
-        android:layout_height="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:src="@drawable/uncurrent_slider_item"/>
 
