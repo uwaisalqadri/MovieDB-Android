@@ -46,6 +46,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 movies.slice(0 until 3).map {
                     sliderAdapter.add(SliderMovieItem(it))
                 }
+                movies.map {
+                    popularAdapter.add(MovieItem(it))
+                }
+                movies.map {
+                    upComingAdapter.add(MovieItem(it))
+                }
             }
             messageData.observe(viewLifecycleOwner) {
                 context?.showToast(it)
@@ -54,6 +60,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             showProgressbar.observe(viewLifecycleOwner) {
                 Timber.d("isLoading $it")
             }
+        }
+
+        with(binding.rvComingSoon) {
+            val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = linearLayoutManager
+            adapter = upComingAdapter
+            setHasFixedSize(true)
+        }
+
+        with(binding.rvPopularMovies) {
+            val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = linearLayoutManager
+            adapter = popularAdapter
+            setHasFixedSize(true)
         }
 
         with(binding.rvSlider) {

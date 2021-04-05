@@ -4,4 +4,5 @@
     android:layout_width="match_parent"
     android:layout_height="261dp"
     android:id="@+id/img_slider_home_item"
+    android:scaleType="centerCrop"
     android:background="?attr/selectableItemBackground" />
