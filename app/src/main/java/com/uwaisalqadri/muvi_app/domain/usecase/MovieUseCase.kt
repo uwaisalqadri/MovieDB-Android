@@ -1,5 +1,6 @@
 package com.uwaisalqadri.muvi_app.domain.usecase
 
+import com.uwaisalqadri.muvi_app.domain.model.Cast
 import com.uwaisalqadri.muvi_app.domain.model.Movie
 import dagger.Provides
 import io.reactivex.Single
@@ -17,4 +18,9 @@ interface MovieUseCase {
         page: Int,
         year: Int
     ) : Single<List<Movie>>
+
+    fun getDetailCredits(
+        movieId: String,
+        apiKey: String
+    ) : Single<List<Cast>>
 }

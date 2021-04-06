@@ -1,5 +1,6 @@
 package com.uwaisalqadri.muvi_app.domain.usecase
 
+import com.uwaisalqadri.muvi_app.domain.model.Cast
 import com.uwaisalqadri.muvi_app.domain.model.Movie
 import com.uwaisalqadri.muvi_app.domain.repository.MovieRepository
 import io.reactivex.Single
@@ -22,5 +23,9 @@ class MovieInteractor @Inject constructor(
         year: Int
     ): Single<List<Movie>> {
         return movieRepository.getDiscoverMovies(apiKey, language, sortBy, includeAdult, page, year)
+    }
+
+    override fun getDetailCredits(movieId: String, apiKey: String): Single<List<Cast>> {
+        return movieRepository.getDetailCredits(movieId, apiKey)
     }
 }

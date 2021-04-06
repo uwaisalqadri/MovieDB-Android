@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="90dp"
     android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -9,6 +10,7 @@
         android:id="@+id/img_cast"
         android:layout_width="match_parent"
         android:layout_height="90dp"
+        android:scaleType="centerCrop"
         android:src="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
