@@ -1,9 +1,6 @@
 package com.uwaisalqadri.muvi_app.data.source.local
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.uwaisalqadri.muvi_app.data.source.local.entity.MovieEntity
 import com.uwaisalqadri.muvi_app.domain.model.Movie
 import io.reactivex.Single
@@ -14,7 +11,7 @@ import io.reactivex.Single
 @Dao
 interface MovieDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertMovie(movie: MovieEntity)
 
     @Delete

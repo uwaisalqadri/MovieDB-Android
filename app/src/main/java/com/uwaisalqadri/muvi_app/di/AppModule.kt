@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.uwaisalqadri.muvi_app.data.repository.MovieRepositoryImpl
 import com.uwaisalqadri.muvi_app.data.source.local.AppDatabase
+import com.uwaisalqadri.muvi_app.data.source.local.MovieDao
 import com.uwaisalqadri.muvi_app.data.source.remote.ApiService
 import com.uwaisalqadri.muvi_app.domain.repository.MovieRepository
 import com.uwaisalqadri.muvi_app.domain.usecase.MovieInteractor
@@ -59,8 +60,8 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRepository(apiService: ApiService): MovieRepository {
-        return MovieRepositoryImpl(apiService)
+    fun provideRepository(apiService: ApiService, movieDao: MovieDao): MovieRepository {
+        return MovieRepositoryImpl(apiService, movieDao)
     }
 
     @Singleton

@@ -37,4 +37,14 @@ class MovieInteractor @Inject constructor(
     override fun getDetailTrailer(movieId: String, apiKey: String): Single<List<Video>> {
         return movieRepository.getDetailTrailer(movieId, apiKey)
     }
+
+    override suspend fun insertMovie(movie: Movie) {
+        movieRepository.insertMovie(movie)
+    }
+
+    override suspend fun deleteMovie(movie: Movie) {
+        movieRepository.deleteMovie(movie)
+    }
+
+    override fun getMovieById(movieId: String): Single<List<Movie>> = movieRepository.getMovieById(movieId)
 }

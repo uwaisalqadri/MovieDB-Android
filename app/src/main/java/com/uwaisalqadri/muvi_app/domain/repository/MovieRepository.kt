@@ -1,5 +1,9 @@
 package com.uwaisalqadri.muvi_app.domain.repository
 
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import com.uwaisalqadri.muvi_app.data.source.local.entity.MovieEntity
 import com.uwaisalqadri.muvi_app.domain.model.Cast
 import com.uwaisalqadri.muvi_app.domain.model.Movie
 import com.uwaisalqadri.muvi_app.domain.model.Video
@@ -34,4 +38,10 @@ interface MovieRepository {
         movieId: String,
         apiKey: String
     ) : Single<List<Video>>
+
+    suspend fun insertMovie(movie: Movie)
+
+    suspend fun deleteMovie(movie: Movie)
+
+    fun getMovieById(movieId: String): Single<List<Movie>>
 }

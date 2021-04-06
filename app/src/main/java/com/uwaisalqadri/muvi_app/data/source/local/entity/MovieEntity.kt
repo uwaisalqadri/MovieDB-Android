@@ -11,7 +11,7 @@ import com.uwaisalqadri.muvi_app.data.source.remote.response.GenreItem
 data class MovieEntity(
     val adult: Boolean,
     val backdrop_path: String?,
-    val genres: List<GenreItem>?,
+    val genres: List<GenreEntity>,
     @PrimaryKey(autoGenerate = false)
     val id: Int,
     val original_language: String,

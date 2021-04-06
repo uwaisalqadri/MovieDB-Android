@@ -35,4 +35,24 @@ interface MovieUseCase {
         movieId: String,
         apiKey: String
     ) : Single<List<Video>>
+
+    suspend fun insertMovie(movie: Movie)
+
+    suspend fun deleteMovie(movie: Movie)
+
+    fun getMovieById(movieId: String): Single<List<Movie>>
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,7 @@
 package com.uwaisalqadri.muvi_app.ui.detail
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.uwaisalqadri.muvi_app.domain.model.Cast
 import com.uwaisalqadri.muvi_app.domain.model.Movie
 import com.uwaisalqadri.muvi_app.domain.model.Video
@@ -10,6 +11,7 @@ import com.uwaisalqadri.muvi_app.utils.Constants
 import com.uwaisalqadri.muvi_app.utils.RxUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.Single
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -25,6 +27,8 @@ class DetailViewModel @Inject constructor(
     val videoData = MutableLiveData<List<Video>>()
     val showProgressBar = MutableLiveData<Boolean>()
     val messageData = MutableLiveData<String>()
+
+    val favoriteState = MutableLiveData<FavoriteState>()
 
     fun getDetailMovie(movieId: String) {
         showProgressBar.value = true
@@ -54,7 +58,7 @@ class DetailViewModel @Inject constructor(
                         castData.value = result
                     } else {
                         showProgressBar.value = false
-                        messageData.value = "Data is Empty"
+                        messageData.value = "Cast is Empty"
                     }
                 }, this::onError)
         )
@@ -71,13 +75,40 @@ class DetailViewModel @Inject constructor(
                         videoData.value = result
                     } else {
                         showProgressBar.value = false
-                        messageData.value = "Data is Empty"
+                        messageData.value = "Trailer is Empty"
                     }
                 }, this::onError)
         )
+    }
+
+    fun checkFavoriteMovie(movieId: String) {
+        compositeDisposable.add(
+           movieUseCase.getMovieById(movieId)
+              .compose(RxUtils.applySingleAsync())
+              .subscribe({ result ->
+                  if (result.isNotEmpty()) {
+                      favoriteState.value = FavMovieDataFound(result)
+                  }
+              }, this::onError)
+        )
+    }
+
+    fun saveFavoriteMovie(movie: Movie) = viewModelScope.launch {
+        movieUseCase.insertMovie(movie)
+        favoriteState.value = AddFavorite
+    }
+
+    fun removeFavoriteMovie(movie: Movie) = viewModelScope.launch {
+        movieUseCase.deleteMovie(movie)
+        favoriteState.value = RemoveFavorite
     }
 
     override fun onError(error: Throwable) {
         messageData.value = error.message
     }
 }
+
+sealed class FavoriteState
+data class FavMovieDataFound(val movie: List<Movie>) : FavoriteState()
+object AddFavorite : FavoriteState()
+object RemoveFavorite : FavoriteState()
