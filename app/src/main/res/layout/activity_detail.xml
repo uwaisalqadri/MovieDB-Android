@@ -1,9 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.detail.DetailActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp"
+            android:elevation="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_detail_movie"
+            android:layout_width="0dp"
+            android:layout_height="563dp"
+            android:src="@android:color/darker_gray"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/detail_gradient"
+            android:layout_width="0dp"
+            android:layout_height="563dp"
+            android:src="@drawable/detail_gradient"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="205dp"/>
+
+        <TextView
+            android:id="@+id/title_detail_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfpro_semibold"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/playtime_detail_movie"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Now You See Me" />
+
+        <TextView
+            android:id="@+id/playtime_detail_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfpro_medium"
+            android:textColor="#B3FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="14dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/genres_detail_movie"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="1h 29m" />
+
+        <TextView
+            android:id="@+id/genres_detail_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfpro_medium"
+            android:textColor="#B3FFFFFF"
+            android:textSize="15sp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_watch_trailer"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Adventure . Action" />
+
+
+        <Button
+            android:id="@+id/btn_watch_trailer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn"
+            app:backgroundTint="@color/smooth_yellow"
+            android:drawableLeft="@drawable/ic_play"
+            android:fontFamily="@font/sfpro_regular"
+            android:text="@string/watch_trailer"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="7dp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_detail_movie"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_add_favorite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/transparent_btn"
+            android:drawableLeft="@drawable/ic_add"
+            android:fontFamily="@font/sfpro_regular"
+            android:text="@string/add_favorite"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="7dp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_detail_movie"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Eighteen months after outwitting the FBI, the fugitive Four Horsemen – J. Daniel Atlas, Merritt McKinney, Jack Wilder, and new member Lula May – await orders from the Eye, the secret society of magicians. The Horsemen’s handler, FBI Special Agent Dylan Rhodes, delivers their instructions: the Horsemen are to expose corrupt tech CEO Owen Case, whose latest cell phone will secretly collect users’ personal data to sell on the black market. In New York City, the Horsemen hijack the phone’s launch, but are interrupted by a mysterious figure who reveals to the public that Jack faked his death, and that Dylan is working with the Horsemen. Dylan eludes the FBI as the Horsemen escape down a construction chute only to find themselves in Macau."
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sfpro_medium"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_gradient" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

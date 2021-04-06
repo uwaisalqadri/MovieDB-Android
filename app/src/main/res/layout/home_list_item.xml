@@ -5,4 +5,5 @@
     android:layout_height="157dp"
     android:layout_marginEnd="10dp"
     android:id="@+id/img_home_item"
-    android:background="?attr/selectableItemBackground"/>
+    android:scaleType="centerCrop"
+    android:foreground="?attr/selectableItemBackground"/>

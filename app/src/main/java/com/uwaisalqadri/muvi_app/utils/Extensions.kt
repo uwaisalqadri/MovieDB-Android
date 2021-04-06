@@ -8,8 +8,10 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.uwaisalqadri.muvi_app.R
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 /**
  * Created by Uwais Alqadri on April 05, 2021
@@ -43,6 +45,11 @@ fun ImageView.loadImage(url: String) {
         .fallback(R.drawable.placeholder_image)
         .into(this)
 
+}
+
+fun getCurrentDate(format: String): String {
+    val formatter = SimpleDateFormat(format, Locale.getDefault())
+    return formatter.format(Date().time)
 }
 
 fun String.formatDate() : String {

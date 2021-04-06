@@ -12,12 +12,17 @@ import com.xwray.groupie.viewbinding.BindableItem
  * Created by Uwais Alqadri on April 05, 2021
  */
 class MovieItem(
-    private val movie: Movie
+    private val movie: Movie,
+    private val onItemClick: (Movie) -> Unit
 ) : BindableItem<HomeListItemBinding>() {
 
     override fun bind(viewBinding: HomeListItemBinding, position: Int) {
         viewBinding.apply {
             movie.poster_path?.let { imgHomeItem.loadImage(Constants.URL_IMAGE + it) }
+
+            root.setOnClickListener {
+                onItemClick(movie)
+            }
         }
     }
 

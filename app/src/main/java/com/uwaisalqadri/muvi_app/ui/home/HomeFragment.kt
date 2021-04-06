@@ -1,5 +1,6 @@
 package com.uwaisalqadri.muvi_app.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -13,6 +14,9 @@ import com.uwaisalqadri.muvi_app.R
 import com.uwaisalqadri.muvi_app.databinding.FragmentHomeBinding
 import com.uwaisalqadri.muvi_app.databinding.IncludeToolbarBinding
 import com.uwaisalqadri.muvi_app.databinding.SliderIndicatorBinding
+import com.uwaisalqadri.muvi_app.domain.model.Movie
+import com.uwaisalqadri.muvi_app.ui.detail.DetailActivity
+import com.uwaisalqadri.muvi_app.utils.getCurrentDate
 import com.uwaisalqadri.muvi_app.utils.showToast
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -41,22 +45,32 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         sliderIndicator = binding.sliderIndicator
 
         with(viewModel) {
-            getDiscoverMovies(1)
-            getPopularMovies(2)
-            getUpComingMovies(1, 2022)
+            getDiscoverMovies(2)
+            getPopularMovies(1)
+            getUpComingMovies(1, getCurrentDate("yyyy").toInt() + 1)
             discoverMovieData.observe(viewLifecycleOwner) { movies ->
                 movies.slice(0 until 3).map {
                     sliderAdapter.add(SliderMovieItem(it))
                 }
             }
             popularMovieData.observe(viewLifecycleOwner) { movies ->
-                movies.map {
-                    popularAdapter.add(MovieItem(it))
+                movies.slice(0 until 10).map {
+                    popularAdapter.add(MovieItem(it) { item ->
+                        startActivity(
+                            Intent(context, DetailActivity::class.java)
+                                .putExtra("movieId", item.id)
+                        )
+                    })
                 }
             }
             upComingMovieData.observe(viewLifecycleOwner) { movies ->
-                movies.map {
-                    upComingAdapter.add(MovieItem(it))
+                movies.slice(0 until 10).map {
+                    upComingAdapter.add(MovieItem(it) { item ->
+                        startActivity(
+                            Intent(context, DetailActivity::class.java)
+                                .putExtra("movieId", item.id)
+                        )
+                    })
                 }
             }
             messageData.observe(viewLifecycleOwner) {
@@ -90,6 +104,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             val snapHelper = PagerSnapHelper()
             snapHelper.attachToRecyclerView(this)
+
+            // TODO = "implement auto scrolling"
+//            val handler = Handler(Looper.getMainLooper())
+//            handler.postDelayed({
+//                scrollToPosition(sliderAdapter.getAda)
+//            }, 5000)
 
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
 

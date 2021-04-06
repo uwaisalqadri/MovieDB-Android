@@ -14,6 +14,21 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.DetailMovie" parent="Theme.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="colorPrimary">@color/dark_gray</item>
+        <item name="colorPrimaryVariant">@color/darker_gray</item>
+        <item name="colorOnPrimary">@color/smooth_yellow</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/dark_gray</item>
+        <item name="colorSecondaryVariant">@color/darker_gray</item>
+        <item name="colorOnSecondary">@color/smooth_yellow</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
     <style name="Theme.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/dark_gray</item>
