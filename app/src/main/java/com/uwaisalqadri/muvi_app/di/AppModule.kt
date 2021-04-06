@@ -1,6 +1,9 @@
 package com.uwaisalqadri.muvi_app.di
 
+import android.content.Context
+import androidx.room.Room
 import com.uwaisalqadri.muvi_app.data.repository.MovieRepositoryImpl
+import com.uwaisalqadri.muvi_app.data.source.local.AppDatabase
 import com.uwaisalqadri.muvi_app.data.source.remote.ApiService
 import com.uwaisalqadri.muvi_app.domain.repository.MovieRepository
 import com.uwaisalqadri.muvi_app.domain.usecase.MovieInteractor
@@ -9,6 +12,7 @@ import com.uwaisalqadri.muvi_app.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -38,6 +42,20 @@ object AppModule {
             .build()
             .create(ApiService::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideDatabase(
+        @ApplicationContext context: Context
+    ) = Room.databaseBuilder(
+        context,
+        AppDatabase::class.java,
+        Constants.DATABASE_NAME
+    ).fallbackToDestructiveMigration().build()
+
+    @Singleton
+    @Provides
+    fun provideDao(db: AppDatabase) = db.movieDao()
 
     @Singleton
     @Provides

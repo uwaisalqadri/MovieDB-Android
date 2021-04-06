@@ -1,7 +1,25 @@
 package com.uwaisalqadri.muvi_app.data.source.local
 
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import com.uwaisalqadri.muvi_app.data.source.local.entity.MovieEntity
+import com.uwaisalqadri.muvi_app.domain.model.Movie
+import io.reactivex.Single
+
 /**
  * Created by Uwais Alqadri on April 05, 2021
  */
+@Dao
 interface MovieDao {
+
+    @Insert
+    fun insertMovie(movie: MovieEntity)
+
+    @Delete
+    fun deleteMovie(movie: MovieEntity)
+
+    @Query("SELECT * FROM favorite_movie ORDER BY id=:movieId")
+    fun getMovieById(movieId: String): Single<List<MovieEntity>>
 }
