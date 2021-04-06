@@ -16,5 +16,6 @@ object Constants {
     const val FORMAT_FROM_API = "yyyy-MM-dd"
     const val DATE_FORMAT = "dd MMM, yyyy"
     const val TYPE_MOVIE = "movie"
+    const val YOUTUBE_URL = "https://www.youtube.com/watch?v="
 
 }

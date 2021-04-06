@@ -2,6 +2,7 @@ package com.uwaisalqadri.muvi_app.domain.usecase
 
 import com.uwaisalqadri.muvi_app.domain.model.Cast
 import com.uwaisalqadri.muvi_app.domain.model.Movie
+import com.uwaisalqadri.muvi_app.domain.model.Video
 import dagger.Provides
 import io.reactivex.Single
 
@@ -29,4 +30,9 @@ interface MovieUseCase {
         movieId: String,
         apiKey: String
     ) : Single<List<Cast>>
+
+    fun getDetailTrailer(
+        movieId: String,
+        apiKey: String
+    ) : Single<List<Video>>
 }

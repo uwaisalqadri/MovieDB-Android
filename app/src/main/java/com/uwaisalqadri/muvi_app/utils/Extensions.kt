@@ -1,6 +1,8 @@
 package com.uwaisalqadri.muvi_app.utils
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.view.View
 import android.widget.ImageView
@@ -50,6 +52,12 @@ fun ImageView.loadImage(url: String) {
 fun getCurrentDate(format: String): String {
     val formatter = SimpleDateFormat(format, Locale.getDefault())
     return formatter.format(Date().time)
+}
+
+fun Context.openLink(url: String) {
+    val openLink = Intent(Intent.ACTION_VIEW)
+    openLink.data = Uri.parse(url)
+    this.startActivity(openLink)
 }
 
 fun String.formatDate() : String {

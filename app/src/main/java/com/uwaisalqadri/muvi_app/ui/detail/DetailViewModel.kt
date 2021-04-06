@@ -3,6 +3,7 @@ package com.uwaisalqadri.muvi_app.ui.detail
 import androidx.lifecycle.MutableLiveData
 import com.uwaisalqadri.muvi_app.domain.model.Cast
 import com.uwaisalqadri.muvi_app.domain.model.Movie
+import com.uwaisalqadri.muvi_app.domain.model.Video
 import com.uwaisalqadri.muvi_app.domain.usecase.MovieUseCase
 import com.uwaisalqadri.muvi_app.ui.BaseViewModel
 import com.uwaisalqadri.muvi_app.utils.Constants
@@ -21,6 +22,7 @@ class DetailViewModel @Inject constructor(
 
     val detailMovieData = MutableLiveData<Movie>()
     val castData = MutableLiveData<List<Cast>>()
+    val videoData = MutableLiveData<List<Video>>()
     val showProgressBar = MutableLiveData<Boolean>()
     val messageData = MutableLiveData<String>()
 
@@ -50,6 +52,23 @@ class DetailViewModel @Inject constructor(
                     if (result.isNotEmpty()) {
                         showProgressBar.value = false
                         castData.value = result
+                    } else {
+                        showProgressBar.value = false
+                        messageData.value = "Data is Empty"
+                    }
+                }, this::onError)
+        )
+    }
+
+    fun getDetailTrailer(movieId: String) {
+        showProgressBar.value = true
+        compositeDisposable.add(
+            movieUseCase.getDetailTrailer(movieId, Constants.API_KEY)
+                .compose(RxUtils.applySingleAsync())
+                .subscribe({ result ->
+                    if (result.isNotEmpty()) {
+                        showProgressBar.value = false
+                        videoData.value = result
                     } else {
                         showProgressBar.value = false
                         messageData.value = "Data is Empty"

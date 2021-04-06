@@ -12,12 +12,17 @@ import com.xwray.groupie.viewbinding.BindableItem
  * Created by Uwais Alqadri on April 05, 2021
  */
 class SliderMovieItem(
-    private val movie: Movie
+    private val movie: Movie,
+    private val onClick: (Movie) -> Unit
 ) : BindableItem<SliderHomeItemBinding>() {
 
     override fun bind(viewBinding: SliderHomeItemBinding, position: Int) {
         viewBinding.apply {
             movie.backdrop_path?.let { imgSliderHomeItem.loadImage(Constants.URL_IMAGE + it) }
+
+            root.setOnClickListener {
+                onClick(movie)
+            }
         }
     }
 

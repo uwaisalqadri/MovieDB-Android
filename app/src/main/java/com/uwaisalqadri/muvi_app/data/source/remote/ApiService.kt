@@ -3,6 +3,7 @@ package com.uwaisalqadri.muvi_app.data.source.remote
 import com.uwaisalqadri.muvi_app.data.source.remote.response.CastResponse
 import com.uwaisalqadri.muvi_app.data.source.remote.response.MovieItem
 import com.uwaisalqadri.muvi_app.data.source.remote.response.MovieResponse
+import com.uwaisalqadri.muvi_app.data.source.remote.response.VideoResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -42,6 +43,11 @@ interface ApiService {
         @Query("api_key") apiKey: String
     ) : Single<CastResponse>
 
+    @GET("movie/{movie_id}/videos")
+    fun getDetailTrailer(
+        @Path("movie_id") movieId: String,
+        @Query("api_key") apiKey: String
+    ) : Single<VideoResponse>
 
 }
 

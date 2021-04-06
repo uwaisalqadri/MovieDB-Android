@@ -26,7 +26,6 @@
             android:id="@+id/img_detail_movie"
             android:layout_width="0dp"
             android:layout_height="563dp"
-            android:src="@android:color/darker_gray"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="205dp"/>
+            app:layout_constraintGuide_begin="191dp" />
 
         <TextView
             android:id="@+id/title_detail_movie"
@@ -58,7 +57,7 @@
             android:textColor="@color/white"
             android:textSize="30sp"
             android:layout_marginStart="20dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="6dp"
             app:layout_constraintBottom_toTopOf="@+id/playtime_detail_movie"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Now You See Me" />
@@ -74,7 +73,9 @@
             android:layout_marginStart="20dp"
             app:layout_constraintBottom_toTopOf="@+id/genres_detail_movie"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="1h 29m" />
+            tools:text="1h 29m"
+            android:drawablePadding="4dp"
+            app:drawableEndCompat="@drawable/ic_hd" />
 
         <TextView
             android:id="@+id/genres_detail_movie"
@@ -95,9 +96,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_btn"
+            android:foreground="?attr/selectableItemBackground"
             app:backgroundTint="@color/smooth_yellow"
             android:drawableLeft="@drawable/ic_play"
-            android:fontFamily="@font/sfpro_regular"
+            android:fontFamily="@font/sfpro_medium"
             android:text="@string/watch_trailer"
             android:textAllCaps="false"
             android:textColor="@color/black"
@@ -113,9 +115,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/transparent_btn"
-            android:drawableLeft="@drawable/ic_check"
-            android:fontFamily="@font/sfpro_regular"
-            android:text="@string/remove_favorite"
+            android:foreground="?attr/selectableItemBackground"
+            android:drawableLeft="@drawable/ic_add"
+            android:fontFamily="@font/sfpro_medium"
+            android:text="@string/add_favorite"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:layout_marginEnd="20dp"
@@ -159,6 +162,8 @@
             tools:listitem="@layout/cast_list_item"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

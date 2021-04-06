@@ -2,6 +2,7 @@ package com.uwaisalqadri.muvi_app.domain.usecase
 
 import com.uwaisalqadri.muvi_app.domain.model.Cast
 import com.uwaisalqadri.muvi_app.domain.model.Movie
+import com.uwaisalqadri.muvi_app.domain.model.Video
 import com.uwaisalqadri.muvi_app.domain.repository.MovieRepository
 import io.reactivex.Single
 import javax.inject.Inject
@@ -31,5 +32,9 @@ class MovieInteractor @Inject constructor(
 
     override fun getDetailCredits(movieId: String, apiKey: String): Single<List<Cast>> {
         return movieRepository.getDetailCredits(movieId, apiKey)
+    }
+
+    override fun getDetailTrailer(movieId: String, apiKey: String): Single<List<Video>> {
+        return movieRepository.getDetailTrailer(movieId, apiKey)
     }
 }

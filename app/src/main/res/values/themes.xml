@@ -17,7 +17,7 @@
     <style name="Theme.DetailMovie" parent="Theme.NoActionBar">
         <!-- Primary brand color. -->
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="colorPrimary">@color/dark_gray</item>
+        <item name="colorPrimary">@color/white_low_opacity</item>
         <item name="colorPrimaryVariant">@color/darker_gray</item>
         <item name="colorOnPrimary">@color/smooth_yellow</item>
         <!-- Secondary brand color. -->

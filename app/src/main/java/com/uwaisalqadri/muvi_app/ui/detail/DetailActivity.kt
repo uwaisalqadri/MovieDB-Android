@@ -7,10 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.uwaisalqadri.muvi_app.R
 import com.uwaisalqadri.muvi_app.databinding.ActivityDetailBinding
-import com.uwaisalqadri.muvi_app.utils.Constants
-import com.uwaisalqadri.muvi_app.utils.formatDate
-import com.uwaisalqadri.muvi_app.utils.loadImage
-import com.uwaisalqadri.muvi_app.utils.showToast
+import com.uwaisalqadri.muvi_app.utils.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,8 +29,10 @@ class DetailActivity : AppCompatActivity() {
         Timber.d(intent.toString())
 
         with(viewModel) {
-            getDetailMovie(intent.toString())
-            getDetailCredits(intent.toString())
+            val movieId = intent.toString()
+            getDetailMovie(movieId)
+            getDetailCredits(movieId)
+            getDetailTrailer(movieId)
 
             detailMovieData.observe(this@DetailActivity) { movie ->
                 binding.apply {
@@ -50,6 +49,15 @@ class DetailActivity : AppCompatActivity() {
                     castAdapter.add(CastItem(it))
                 }
             }
+
+            videoData.observe(this@DetailActivity) { videos ->
+                videos.map { video ->
+                    binding.btnWatchTrailer.setOnClickListener {
+                        openLink(Constants.YOUTUBE_URL + video.key)
+                    }
+                }
+            }
+
             messageData.observe(this@DetailActivity) {
                 showToast(it)
             }

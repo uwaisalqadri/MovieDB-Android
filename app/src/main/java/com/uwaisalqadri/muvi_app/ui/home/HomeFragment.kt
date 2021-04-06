@@ -50,7 +50,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             getUpComingMovies(1, getCurrentDate("yyyy").toInt() + 1)
             discoverMovieData.observe(viewLifecycleOwner) { movies ->
                 movies.slice(0 until 3).map {
-                    sliderAdapter.add(SliderMovieItem(it))
+                    sliderAdapter.add(SliderMovieItem(it) { item ->
+                        startActivity(
+                            Intent(context, DetailActivity::class.java)
+                                .putExtra("movieId", item.id)
+                        )
+                    })
                 }
             }
             popularMovieData.observe(viewLifecycleOwner) { movies ->

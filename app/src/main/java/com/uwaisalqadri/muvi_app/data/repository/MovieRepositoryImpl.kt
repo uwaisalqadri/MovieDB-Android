@@ -2,11 +2,13 @@ package com.uwaisalqadri.muvi_app.data.repository
 
 import com.uwaisalqadri.muvi_app.data.mapper.response.CastResponseMapper
 import com.uwaisalqadri.muvi_app.data.mapper.response.MovieResponseMapper
+import com.uwaisalqadri.muvi_app.data.mapper.response.VideoResponseMapper
 import com.uwaisalqadri.muvi_app.data.source.remote.ApiService
 import com.uwaisalqadri.muvi_app.data.source.remote.response.MovieItem
 import com.uwaisalqadri.muvi_app.data.source.remote.response.MovieResponse
 import com.uwaisalqadri.muvi_app.domain.model.Cast
 import com.uwaisalqadri.muvi_app.domain.model.Movie
+import com.uwaisalqadri.muvi_app.domain.model.Video
 import com.uwaisalqadri.muvi_app.domain.repository.MovieRepository
 import io.reactivex.Single
 import javax.inject.Inject
@@ -21,6 +23,7 @@ class MovieRepositoryImpl @Inject constructor(
 
     private val movieMapper = MovieResponseMapper()
     private val castMapper = CastResponseMapper()
+    private val videoMapper = VideoResponseMapper()
 
     override fun getDiscoverMovies(
         apiKey: String,
@@ -48,6 +51,12 @@ class MovieRepositoryImpl @Inject constructor(
     override fun getDetailCredits(movieId: String, apiKey: String): Single<List<Cast>> {
         return apiService.getDetailCredits(movieId, apiKey).map {
             castMapper.mapToListDomain(it.cast)
+        }
+    }
+
+    override fun getDetailTrailer(movieId: String, apiKey: String): Single<List<Video>> {
+        return apiService.getDetailTrailer(movieId, apiKey).map {
+            videoMapper.mapToListDomain(it.results)
         }
     }
 
