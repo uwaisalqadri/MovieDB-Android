@@ -25,6 +25,10 @@ class MovieInteractor @Inject constructor(
         return movieRepository.getDiscoverMovies(apiKey, language, sortBy, includeAdult, page, year)
     }
 
+    override fun getDetailMovie(movieId: String, apiKey: String, language: String): Single<Movie> {
+        return movieRepository.getDetailMovie(movieId, apiKey, language)
+    }
+
     override fun getDetailCredits(movieId: String, apiKey: String): Single<List<Cast>> {
         return movieRepository.getDetailCredits(movieId, apiKey)
     }

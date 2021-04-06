@@ -1,12 +1,14 @@
 package com.uwaisalqadri.muvi_app.domain.model
 
+import com.uwaisalqadri.muvi_app.data.source.remote.response.GenreItem
+
 /**
  * Created by Uwais Alqadri on April 05, 2021
  */
 data class Movie(
     val adult: Boolean,
     val backdrop_path: String?,
-    val genre_ids: List<Int>,
+    val genres: List<GenreItem>?,
     val id: Int,
     val original_language: String,
     val original_title: String,

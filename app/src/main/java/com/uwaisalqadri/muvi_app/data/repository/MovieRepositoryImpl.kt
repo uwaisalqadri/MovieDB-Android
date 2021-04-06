@@ -3,6 +3,7 @@ package com.uwaisalqadri.muvi_app.data.repository
 import com.uwaisalqadri.muvi_app.data.mapper.response.CastResponseMapper
 import com.uwaisalqadri.muvi_app.data.mapper.response.MovieResponseMapper
 import com.uwaisalqadri.muvi_app.data.source.remote.ApiService
+import com.uwaisalqadri.muvi_app.data.source.remote.response.MovieItem
 import com.uwaisalqadri.muvi_app.data.source.remote.response.MovieResponse
 import com.uwaisalqadri.muvi_app.domain.model.Cast
 import com.uwaisalqadri.muvi_app.domain.model.Movie
@@ -31,6 +32,16 @@ class MovieRepositoryImpl @Inject constructor(
     ): Single<List<Movie>> {
         return apiService.getDiscoverMovies(apiKey, language, sortBy, includeAdult, page, year).map {
             movieMapper.mapToListDomain(it.results)
+        }
+    }
+
+    override fun getDetailMovie(
+        movieId: String,
+        apiKey: String,
+        language: String
+    ): Single<Movie> {
+        return apiService.getDetailMovie(movieId, apiKey, language).map {
+            movieMapper.mapToDomain(it)
         }
     }
 

@@ -3,7 +3,7 @@ package com.uwaisalqadri.muvi_app.data.source.remote.response
 data class MovieItem(
     val adult: Boolean,
     val backdrop_path: String?,
-    val genre_ids: List<Int>,
+    val genres: List<GenreItem>?,
     val id: Int,
     val original_language: String,
     val original_title: String,

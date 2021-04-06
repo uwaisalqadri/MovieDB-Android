@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.uwaisalqadri.muvi_app.R
 import com.uwaisalqadri.muvi_app.databinding.ActivityDetailBinding
+import com.uwaisalqadri.muvi_app.utils.Constants
+import com.uwaisalqadri.muvi_app.utils.formatDate
+import com.uwaisalqadri.muvi_app.utils.loadImage
 import com.uwaisalqadri.muvi_app.utils.showToast
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -29,7 +32,18 @@ class DetailActivity : AppCompatActivity() {
         Timber.d(intent.toString())
 
         with(viewModel) {
+            getDetailMovie(intent.toString())
             getDetailCredits(intent.toString())
+
+            detailMovieData.observe(this@DetailActivity) { movie ->
+                binding.apply {
+                    titleDetailMovie.text = movie.title
+                    descriptionDetailMovie.text = movie.overview
+                    movie.poster_path?.let { imgDetailMovie.loadImage(Constants.URL_IMAGE + it) }
+                    playtimeDetailMovie.text = movie.release_date.formatDate()
+                    movie.genres?.map { genresDetailMovie.text = it.name }
+                }
+            }
 
             castData.observe(this@DetailActivity) { casts ->
                 casts.map {

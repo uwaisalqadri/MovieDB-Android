@@ -12,7 +12,7 @@ class MovieResponseMapper : BaseMapper<MovieItem, Movie> {
         return Movie(
             model.adult,
             model.backdrop_path,
-            model.genre_ids,
+            model.genres,
             model.id,
             model.original_language,
             model.original_title,
@@ -31,7 +31,7 @@ class MovieResponseMapper : BaseMapper<MovieItem, Movie> {
         return MovieItem(
             domain.adult,
             domain.backdrop_path,
-            domain.genre_ids,
+            domain.genres,
             domain.id,
             domain.original_language,
             domain.original_title,

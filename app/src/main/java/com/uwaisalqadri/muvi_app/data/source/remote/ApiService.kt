@@ -1,6 +1,7 @@
 package com.uwaisalqadri.muvi_app.data.source.remote
 
 import com.uwaisalqadri.muvi_app.data.source.remote.response.CastResponse
+import com.uwaisalqadri.muvi_app.data.source.remote.response.MovieItem
 import com.uwaisalqadri.muvi_app.data.source.remote.response.MovieResponse
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -33,7 +34,7 @@ interface ApiService {
         @Path("movie_id") movieId: String,
         @Query("api_key") apiKey: String,
         @Query("language") language: String,
-    )
+    ) : Single<MovieItem>
 
     @GET("movie/{movie_id}/credits")
     fun getDetailCredits(
