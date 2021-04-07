@@ -52,5 +52,5 @@ interface MovieRepository {
 
     fun getMovieById(movieId: String): Single<List<Movie>>
 
-    fun getFavoriteMovies(): Single<List<Movie>>
+    fun getFavoriteMovies(title: String): Single<List<Movie>>
 }

@@ -47,7 +47,7 @@ class FavoriteAdapter(
     inner class ViewHolder(private val binding: FavoriteListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
             binding.apply {
-                movie.backdrop_path?.let { favMovieImg.loadImage(Constants.URL_IMAGE + it) }
+                movie.poster_path?.let { favMovieImg.loadImage(Constants.URL_IMAGE + it) }
                 favMovieTitle.text = movie.title
                 favMovieReleased.text = movie.release_date.formatDate("yyyy")
                 movie.genres?.map { favMovieGenres.text = it.name }

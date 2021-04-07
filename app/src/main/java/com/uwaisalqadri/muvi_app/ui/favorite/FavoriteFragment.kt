@@ -3,6 +3,8 @@ package com.uwaisalqadri.muvi_app.ui.favorite
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +17,11 @@ import com.uwaisalqadri.muvi_app.utils.showToast
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
 /**
  * Created by Uwais Alqadri on April 05, 2021
@@ -32,12 +39,35 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
         super.onViewCreated(view, savedInstanceState)
         toolbarBinding = binding.toolbar
 
+        var job: Job? = null
+        toolbarBinding.apply {
+            inputSearch.addTextChangedListener { editable ->
+                job?.cancel()
+                job = MainScope().launch {
+                    delay(200L)
+                    editable?.let {
+                        if (editable.isNotEmpty()) {
+                            viewModel.getFavoriteMovies(editable.toString())
+                        } else {
+//                            favoriteAdapter
+                        }
+                    }
+                }
+            }
+
+            btnSearch.setOnClickListener {
+                val query = inputSearch.text.toString()
+                viewModel.getFavoriteMovies(query)
+            }
+        }
+
         with(viewModel) {
-            getFavoriteMovies()
+            viewModel.getFavoriteMovies("")
 
             favoriteMovieData.observe(viewLifecycleOwner) { favorites ->
                 favoriteAdapter.differ.submitList(favorites)
                 favoriteAdapter.notifyDataSetChanged()
+                Timber.d(favorites.toString())
             }
 
             messageData.observe(viewLifecycleOwner) {

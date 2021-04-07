@@ -10,6 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="150dp"
+            android:elevation="8dp"
+            android:visibility="gone"
+            android:indeterminateTint="@color/smooth_yellow"
+            app:layout_constraintEnd_toEndOf="@+id/img_detail_movie"
+            app:layout_constraintStart_toStartOf="@+id/img_detail_movie"
+            app:layout_constraintTop_toTopOf="@+id/img_detail_movie" />
+
         <ImageView
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
@@ -136,7 +148,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/sfpro_medium"
-            android:text="Eighteen months after outwitting the FBI, the fugitive Four Horsemen – J. Daniel Atlas, Merritt McKinney, Jack Wilder, and new member Lula May – await orders from the Eye, the secret society of magicians. The Horsemen’s handler, FBI Special Agent Dylan Rhodes, delivers their instructions: the Horsemen are to expose corrupt tech CEO Owen Case, whose latest cell phone will secretly collect users’ personal data to sell on the black market. In New York City, the Horsemen hijack the phone’s launch, but are interrupted by a mysterious figure who reveals to the public that Jack faked his death, and that Dylan is working with the Horsemen. Dylan eludes the FBI as the Horsemen escape down a construction chute only to find themselves in Macau."
+            tools:text="Eighteen months after outwitting the FBI, the fugitive Four Horsemen – J. Daniel Atlas, Merritt McKinney, Jack Wilder, and new member Lula May – await orders from the Eye, the secret society of magicians. The Horsemen’s handler, FBI Special Agent Dylan Rhodes, delivers their instructions: the Horsemen are to expose corrupt tech CEO Owen Case, whose latest cell phone will secretly collect users’ personal data to sell on the black market. In New York City, the Horsemen hijack the phone’s launch, but are interrupted by a mysterious figure who reveals to the public that Jack faked his death, and that Dylan is working with the Horsemen. Dylan eludes the FBI as the Horsemen escape down a construction chute only to find themselves in Macau."
             android:textColor="?android:attr/textColorSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

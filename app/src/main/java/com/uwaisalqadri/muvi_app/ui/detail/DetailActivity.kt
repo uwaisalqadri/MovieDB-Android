@@ -3,6 +3,7 @@ package com.uwaisalqadri.muvi_app.ui.detail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.uwaisalqadri.muvi_app.R
@@ -77,7 +78,7 @@ class DetailActivity : AppCompatActivity() {
                 showToast(it)
             }
             showProgressBar.observe(this@DetailActivity) {
-                //
+                binding.progressCircular.isVisible = it
             }
 
             favoriteState.observe(this@DetailActivity) { favoriteState ->

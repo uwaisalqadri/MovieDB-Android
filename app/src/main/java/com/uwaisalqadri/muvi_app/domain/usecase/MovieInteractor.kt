@@ -56,5 +56,5 @@ class MovieInteractor @Inject constructor(
 
     override fun getMovieById(movieId: String): Single<List<Movie>> = movieRepository.getMovieById(movieId)
 
-    override fun getFavoriteMovies(): Single<List<Movie>> = movieRepository.getFavoriteMovies()
+    override fun getFavoriteMovies(title: String): Single<List<Movie>> = movieRepository.getFavoriteMovies(title)
 }

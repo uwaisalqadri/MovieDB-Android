@@ -24,9 +24,9 @@ class FavoriteViewModel @Inject constructor(
 	val messageData = MutableLiveData<String>()
 	val favoriteMovieData = MutableLiveData<List<Movie>>()
 
-	fun getFavoriteMovies() {
+	fun getFavoriteMovies(title: String) {
 		compositeDisposable.add(
-			movieUseCase.getFavoriteMovies()
+			movieUseCase.getFavoriteMovies(title)
 				.compose(RxUtils.applySingleAsync())
 				.subscribe({ result ->
 					if (result.isNotEmpty()) {

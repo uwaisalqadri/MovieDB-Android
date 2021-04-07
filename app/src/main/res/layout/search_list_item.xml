@@ -9,14 +9,14 @@
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_margin="10dp"
-        android:background="?attr/selectableItemBackground">
+        android:layout_margin="10dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/img_search_item"
             android:layout_width="match_parent"
             android:layout_height="216dp"
             android:scaleType="centerCrop"
+            android:foreground="?attr/selectableItemBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
