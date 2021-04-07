@@ -80,5 +80,11 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getFavoriteMovies(): Single<List<Movie>> {
+        return movieDao.getFavoriteMovies().map {
+            movieEntityMapper.mapToListDomain(it)
+        }
+    }
+
 
 }

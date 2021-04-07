@@ -54,7 +54,7 @@ class DetailActivity : AppCompatActivity() {
                     titleDetailMovie.text = movieData.title
                     descriptionDetailMovie.text = movieData.overview
                     movieData.poster_path?.let { imgDetailMovie.loadImage(Constants.URL_IMAGE + it) }
-                    playtimeDetailMovie.text = movieData.release_date.formatDate()
+                    playtimeDetailMovie.text = movieData.release_date.formatDate(Constants.DATE_FORMAT)
                     movieData.genres?.map { genresDetailMovie.text = it.name }
                 }
             }

@@ -60,11 +60,11 @@ fun Context.openLink(url: String) {
     this.startActivity(openLink)
 }
 
-fun String.formatDate() : String {
+fun String.formatDate(format: String) : String {
     return if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O && this.isNotEmpty()) {
         val formatter = DateTimeFormatter.ofPattern(Constants.FORMAT_FROM_API)
         val currentDate = LocalDate.parse(this, formatter)
-        currentDate.format(DateTimeFormatter.ofPattern(Constants.DATE_FORMAT))
+        currentDate.format(DateTimeFormatter.ofPattern(format))
     } else {
         if (this.isEmpty()) "Unknown Date" else this
     }

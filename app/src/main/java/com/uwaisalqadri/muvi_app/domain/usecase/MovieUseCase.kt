@@ -1,5 +1,6 @@
 package com.uwaisalqadri.muvi_app.domain.usecase
 
+import com.uwaisalqadri.muvi_app.data.source.local.entity.MovieEntity
 import com.uwaisalqadri.muvi_app.domain.model.Cast
 import com.uwaisalqadri.muvi_app.domain.model.Movie
 import com.uwaisalqadri.muvi_app.domain.model.Video
@@ -41,6 +42,8 @@ interface MovieUseCase {
     suspend fun deleteMovie(movie: Movie)
 
     fun getMovieById(movieId: String): Single<List<Movie>>
+
+    fun getFavoriteMovies(): Single<List<Movie>>
 }
 
 

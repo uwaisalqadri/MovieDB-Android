@@ -44,4 +44,6 @@ interface MovieRepository {
     suspend fun deleteMovie(movie: Movie)
 
     fun getMovieById(movieId: String): Single<List<Movie>>
+
+    fun getFavoriteMovies(): Single<List<Movie>>
 }

@@ -19,4 +19,7 @@ interface MovieDao {
 
     @Query("SELECT * FROM favorite_movie ORDER BY id=:movieId")
     fun getMovieById(movieId: String): Single<List<MovieEntity>>
+
+    @Query("SELECT * FROM favorite_movie")
+    fun getFavoriteMovies(): Single<List<MovieEntity>>
 }

@@ -1,5 +1,6 @@
 package com.uwaisalqadri.muvi_app.domain.usecase
 
+import com.uwaisalqadri.muvi_app.data.source.local.entity.MovieEntity
 import com.uwaisalqadri.muvi_app.domain.model.Cast
 import com.uwaisalqadri.muvi_app.domain.model.Movie
 import com.uwaisalqadri.muvi_app.domain.model.Video
@@ -47,4 +48,6 @@ class MovieInteractor @Inject constructor(
     }
 
     override fun getMovieById(movieId: String): Single<List<Movie>> = movieRepository.getMovieById(movieId)
+
+    override fun getFavoriteMovies(): Single<List<Movie>> = movieRepository.getFavoriteMovies()
 }
