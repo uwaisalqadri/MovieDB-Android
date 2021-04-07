@@ -6,6 +6,7 @@ import com.uwaisalqadri.muvi_app.domain.usecase.MovieUseCase
 import com.uwaisalqadri.muvi_app.ui.BaseViewModel
 import com.uwaisalqadri.muvi_app.utils.Constants
 import com.uwaisalqadri.muvi_app.utils.RxUtils
+import com.uwaisalqadri.muvi_app.utils.getCurrentDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -32,7 +33,7 @@ class HomeViewModel @Inject constructor(
                 Constants.SORT_BY,
                 false,
                 page,
-                2021
+                getCurrentDate("yyyy").toInt()
             ).compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     if (result.isNotEmpty()) {
@@ -54,7 +55,7 @@ class HomeViewModel @Inject constructor(
                 Constants.SORT_BY,
                 false,
                 page,
-                2021
+                getCurrentDate("yyyy").toInt()
             ).compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     if (result.isNotEmpty()) {

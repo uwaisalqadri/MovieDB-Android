@@ -1,13 +1,11 @@
 package com.uwaisalqadri.muvi_app.domain.usecase
 
-import com.uwaisalqadri.muvi_app.data.source.local.entity.MovieEntity
 import com.uwaisalqadri.muvi_app.domain.model.Cast
 import com.uwaisalqadri.muvi_app.domain.model.Movie
 import com.uwaisalqadri.muvi_app.domain.model.Video
 import com.uwaisalqadri.muvi_app.domain.repository.MovieRepository
 import io.reactivex.Single
 import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * Created by Uwais Alqadri on April 05, 2021
@@ -25,6 +23,15 @@ class MovieInteractor @Inject constructor(
         year: Int
     ): Single<List<Movie>> {
         return movieRepository.getDiscoverMovies(apiKey, language, sortBy, includeAdult, page, year)
+    }
+
+    override fun searchMovies(
+        apiKey: String,
+        language: String,
+        query: String,
+        page: Int
+    ): Single<List<Movie>> {
+        return movieRepository.searchMovies(apiKey, language, query, page)
     }
 
     override fun getDetailMovie(movieId: String, apiKey: String, language: String): Single<Movie> {

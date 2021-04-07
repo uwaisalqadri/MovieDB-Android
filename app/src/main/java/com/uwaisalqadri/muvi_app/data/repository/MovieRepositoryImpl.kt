@@ -42,6 +42,17 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun searchMovies(
+        apiKey: String,
+        language: String,
+        query: String,
+        page: Int
+    ): Single<List<Movie>> {
+        return apiService.searchMovies(apiKey, language, query, page).map {
+            movieMapper.mapToListDomain(it.results)
+        }
+    }
+
     override fun getDetailMovie(
         movieId: String,
         apiKey: String,

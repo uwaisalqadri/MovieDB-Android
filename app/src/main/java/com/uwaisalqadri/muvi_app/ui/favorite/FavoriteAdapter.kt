@@ -44,10 +44,10 @@ class FavoriteAdapter(
 
     override fun getItemCount(): Int = differ.currentList.size
 
-    inner class ViewHolder(val binding: FavoriteListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: FavoriteListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
             binding.apply {
-                movie.poster_path?.let { favMovieImg.loadImage(Constants.URL_IMAGE + it) }
+                movie.backdrop_path?.let { favMovieImg.loadImage(Constants.URL_IMAGE + it) }
                 favMovieTitle.text = movie.title
                 favMovieReleased.text = movie.release_date.formatDate("yyyy")
                 movie.genres?.map { favMovieGenres.text = it.name }

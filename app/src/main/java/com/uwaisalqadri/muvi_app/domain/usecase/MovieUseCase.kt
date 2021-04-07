@@ -21,6 +21,13 @@ interface MovieUseCase {
         year: Int
     ) : Single<List<Movie>>
 
+    fun searchMovies(
+        apiKey: String,
+        language: String,
+        query: String,
+        page: Int
+    ) : Single<List<Movie>>
+
     fun getDetailMovie(
         movieId: String,
         apiKey: String,

@@ -76,7 +76,7 @@ class DetailViewModel @Inject constructor(
                         videoData.value = result
                     } else {
                         showProgressBar.value = false
-                        messageData.value = "Trailer is Empty"
+                        Timber.d("Trailer is Empty")
                     }
                 }, this::onError)
         )

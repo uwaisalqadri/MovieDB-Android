@@ -30,6 +30,14 @@ interface ApiService {
         @Query("language") language: String,
     )
 
+    @GET("search/movie")
+    fun searchMovies(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+        @Query("query") query: String,
+        @Query("page") page: Int
+    ) : Single<MovieResponse>
+
     @GET("movie/{movie_id}")
     fun getDetailMovie(
         @Path("movie_id") movieId: String,
