@@ -12,6 +12,7 @@ import com.uwaisalqadri.muvi_app.utils.RxUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.Single
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -109,6 +110,7 @@ class DetailViewModel @Inject constructor(
 
     override fun onError(error: Throwable) {
         messageData.value = error.message
+        Timber.d(error)
     }
 }
 
