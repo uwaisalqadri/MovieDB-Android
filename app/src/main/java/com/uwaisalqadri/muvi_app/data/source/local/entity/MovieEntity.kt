@@ -2,6 +2,8 @@ package com.uwaisalqadri.muvi_app.data.source.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.uwaisalqadri.muvi_app.data.source.local.GenreConverters
 import com.uwaisalqadri.muvi_app.data.source.remote.response.GenreItem
 
 /**
@@ -11,7 +13,7 @@ import com.uwaisalqadri.muvi_app.data.source.remote.response.GenreItem
 data class MovieEntity(
     val adult: Boolean,
     val backdrop_path: String?,
-    val genres: List<GenreEntity>,
+    val genres: List<GenreItem>?,
     @PrimaryKey(autoGenerate = false)
     val id: Int,
     val original_language: String,

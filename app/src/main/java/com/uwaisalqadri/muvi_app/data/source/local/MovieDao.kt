@@ -12,10 +12,10 @@ import io.reactivex.Single
 interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertMovie(movie: MovieEntity)
+    suspend fun insertMovie(movie: MovieEntity)
 
     @Delete
-    fun deleteMovie(movie: MovieEntity)
+    suspend fun deleteMovie(movie: MovieEntity)
 
     @Query("SELECT * FROM favorite_movie ORDER BY id=:movieId")
     fun getMovieById(movieId: String): Single<List<MovieEntity>>

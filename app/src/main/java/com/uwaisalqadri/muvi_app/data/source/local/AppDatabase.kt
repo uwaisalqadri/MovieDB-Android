@@ -13,7 +13,7 @@ import com.uwaisalqadri.muvi_app.data.source.local.entity.MovieEntity
     version = 1,
     exportSchema = false
 )
-@TypeConverters(Converters::class)
+@TypeConverters(GenreConverters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
 }

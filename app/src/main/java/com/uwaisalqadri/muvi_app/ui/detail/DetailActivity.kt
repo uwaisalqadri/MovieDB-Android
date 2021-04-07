@@ -23,7 +23,7 @@ class DetailActivity : AppCompatActivity() {
 
     private val castAdapter = GroupAdapter<GroupieViewHolder>()
 
-    private var isFavorite by Delegates.notNull<Boolean>()
+    private var isFavorite: Boolean? = false
     private lateinit var movieId: String
     private lateinit var movieData: Movie
 
@@ -36,9 +36,9 @@ class DetailActivity : AppCompatActivity() {
         Timber.d(intent.toString())
 
         binding.btnAddFavorite.setOnClickListener {
-            when {
-                !isFavorite -> viewModel.saveFavoriteMovie(movieData)
-                isFavorite -> viewModel.removeFavoriteMovie(movieData)
+            when(isFavorite) {
+                true -> viewModel.removeFavoriteMovie(movieData)
+                false -> viewModel.saveFavoriteMovie(movieData)
             }
         }
 
@@ -46,6 +46,7 @@ class DetailActivity : AppCompatActivity() {
             getDetailMovie(movieId)
             getDetailCredits(movieId)
             getDetailTrailer(movieId)
+            checkFavoriteMovie(movieId)
 
             detailMovieData.observe(this@DetailActivity) { movie ->
                 binding.apply {
@@ -83,17 +84,17 @@ class DetailActivity : AppCompatActivity() {
                 when(favoriteState) {
                     is AddFavorite -> {
                         removeFavoriteView()
-                        isFavorite
+                        isFavorite = true
                     }
                     is RemoveFavorite -> {
                         addFavoriteView()
-                        !isFavorite
+                        isFavorite = false
                     }
                     is FavMovieDataFound -> {
                         favoriteState.movie.map {
                             if (it.id == movieId.toInt()) {
                                 removeFavoriteView()
-                                isFavorite
+                                isFavorite = true
                             }
                         }
                     }

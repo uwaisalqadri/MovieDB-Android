@@ -93,14 +93,18 @@ class DetailViewModel @Inject constructor(
         )
     }
 
-    fun saveFavoriteMovie(movie: Movie) = viewModelScope.launch {
-        movieUseCase.insertMovie(movie)
-        favoriteState.value = AddFavorite
+    fun saveFavoriteMovie(movie: Movie) {
+        viewModelScope.launch {
+            movieUseCase.insertMovie(movie)
+            favoriteState.value = AddFavorite
+        }
     }
 
-    fun removeFavoriteMovie(movie: Movie) = viewModelScope.launch {
-        movieUseCase.deleteMovie(movie)
-        favoriteState.value = RemoveFavorite
+    fun removeFavoriteMovie(movie: Movie) {
+        viewModelScope.launch {
+            movieUseCase.deleteMovie(movie)
+            favoriteState.value = RemoveFavorite
+        }
     }
 
     override fun onError(error: Throwable) {
