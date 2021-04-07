@@ -3,6 +3,7 @@ package com.uwaisalqadri.muvi_app.ui.popular
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -40,15 +41,32 @@ class PopularFragment : Fragment(R.layout.fragment_popular) {
         toolbarBinding = binding.toolbar
 
         var job: Job? = null
-        toolbarBinding.inputSearch.addTextChangedListener { editable ->
-            job?.cancel()
-            job = MainScope().launch {
-                delay(200L)
-                editable?.let {
-                    if (editable.isNotEmpty()) {
-                        viewModel.searchMovies(editable.toString())
+        toolbarBinding.apply {
+            inputSearch.addTextChangedListener { editable ->
+                job?.cancel()
+                job = MainScope().launch {
+                    delay(200L)
+                    editable?.let {
+                        if (editable.isNotEmpty()) {
+                            viewModel.searchMovies(editable.toString())
+                            binding.apply {
+                                tvSearchedItem.text = "'${editable}'"
+                                description.isVisible = true
+                            }
+                        } else {
+                            searchAdapter.clear()
+                            binding.apply {
+                                tvSearchedItem.text = ""
+                                description.isVisible = false
+                            }
+                        }
                     }
                 }
+            }
+
+            btnSearch.setOnClickListener {
+                val query = inputSearch.text.toString()
+                viewModel.searchMovies(query)
             }
         }
 
